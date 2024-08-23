@@ -1,0 +1,148 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DocConf.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="DocConf.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="DocConf">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <Grid Background="DimGray">
+        <ScrollViewer>
+        <StackPanel>
+            <Grid>
+                <Button Content="Загрузить файл" Click="Button_Load">
+                    <Button.Styles>
+                        <Style>
+                            <Style.Resources>
+                                <SolidColorBrush x:Key="ThemeBorderMidBrush">Blue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ThemeControlHighBrush">DarkBlue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ButtonBorderBrush">Blue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ButtonBackground">DarkBlue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver">Blue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ButtonBackgroundPressed">BlueViolet</SolidColorBrush>
+                            </Style.Resources>
+                        </Style>
+                    </Button.Styles>
+                </Button>
+                <TextBlock Text="DocConf" FontSize="18" TextAlignment="Center" HorizontalAlignment="Center"/>
+                <Button Content="Подключится к АРМ" HorizontalAlignment="Right">
+                    <Button.Styles>
+                        <Style>
+                            <Style.Resources>
+                                <SolidColorBrush x:Key="ThemeBorderMidBrush">Blue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ThemeControlHighBrush">DarkBlue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ButtonBorderBrush">Blue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ButtonBackground">DarkBlue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver">Blue</SolidColorBrush>
+                                <SolidColorBrush x:Key="ButtonBackgroundPressed">BlueViolet</SolidColorBrush>
+                            </Style.Resources>
+                        </Style>
+                    </Button.Styles>
+                </Button>
+            </Grid>
+            <StackPanel Margin="0,20,0 20">
+                <ToggleSwitch x:Name="useIVK1" IsChecked="False" Height="50" Content="Использовать ИВК-1" />
+                <TreeView BorderThickness="1">
+                    <TreeViewItem x:Name="IVK1" Header="ИВК-1" IsExpanded="False" IsEnabled="{Binding ElementName=useIVK1, Path=IsChecked}">
+                        <TreeViewItem Header="Документы" IsExpanded="False">
+                            <ToggleSwitch x:Name="useReportIVK1" IsChecked="False" Height="50" Content="Использовать Отчеты"/>
+                            <TreeViewItem Header="Отчеты" x:Name="ReportIVK1" IsExpanded="False" IsEnabled="{Binding ElementName=useReportIVK1, Path=IsChecked}">
+                                <CheckBox x:Name="reportIVK1" IsChecked="False" Height="20" Content="Отчеты" />
+                                <CheckBox x:Name="reportUstLugaIVK1" IsChecked="False" Height="20" Content="Отчеты(Усть-Луга)" />
+                            </TreeViewItem>
+                            <ToggleSwitch x:Name="usePasportsIVK1" IsChecked="False" Height="50" Content="Использовать Паспорта"/>
+                            <TreeViewItem Header="Паспорта" x:Name="PasportsIVK1" IsExpanded="False" IsEnabled="{Binding ElementName=usePasportsIVK1, Path=IsChecked}">
+                                <CheckBox x:Name="pasportIVK1" IsChecked="False" Height="20" Content="Паспорт качества" />
+                                <CheckBox x:Name="pasportExpIVK1" IsChecked="False" Height="20" Content="Паспорт качества на экспорт" />
+                                <CheckBox x:Name="pasportGostGIVK1" IsChecked="False" Height="20" Content="Паспорт (ГОСТ Р50.2.40 Приложение Ж)" />
+                                <CheckBox x:Name="pasportGostIIVK1" IsChecked="False" Height="20" Content="Паспорт (ГОСТ Р50.2.40 Приложение И)" />
+                                <CheckBox x:Name="pasportMI13IVK1" IsChecked="False" Height="20" Content="Паспорт (МИ 3532-2015 Приложение 13)" />
+                                <CheckBox x:Name="pasportMI14IVK1" IsChecked="False" Height="20" Content="Паспорт (МИ 3532-2015 Приложение 14)" />
+                                <CheckBox x:Name="pasportProductIVK1" IsChecked="False" Height="20" Content="Паспорт для нефтепродукта" />
+                                <CheckBox x:Name="pasportMI15IVK1" IsChecked="False" Height="20" Content="Паспорт (МИ 3532-2015 Приложение 15)" />
+                            </TreeViewItem>
+                            <ToggleSwitch x:Name="useActsIVK1" IsChecked="False" Height="50" Content="Использовать Акты"/>
+                            <TreeViewItem Header="Акты" x:Name="ActsIVK1" IsExpanded="False" IsEnabled="{Binding ElementName=useActsIVK1, Path=IsChecked}">
+                                <CheckBox x:Name="ActValIVK1" IsChecked="False" Height="20" Content="Акт для валовых объемов нефти" />
+                                <CheckBox x:Name="ActPartiyIVK1" IsChecked="False" Height="20" Content="Акт для партий нефти" />
+                                <CheckBox x:Name="ActProductIVK1" IsChecked="False" Height="20" Content="Акт для нефтепродукта" />
+                                <CheckBox x:Name="ActPriemSdachaIVK1" IsChecked="False" Height="20" Content="Акт приема - сдачи нефти" />
+                                <CheckBox x:Name="ActValPrilGIVK1" IsChecked="False" Height="20" Content="Акт для валовых объемов нефти (Приложение Г)" />
+                            </TreeViewItem>
+                            <ToggleSwitch x:Name="useJournalsIVK1" IsChecked="False" Height="50" Content="Использовать Журналы"/>
+                            <TreeViewItem Header="Журналы" x:Name="JournalsIVK1" IsExpanded="False" IsEnabled="{Binding ElementName=useJournalsIVK1, Path=IsChecked}">
+                                <CheckBox x:Name="JournalNeftIVK1" IsChecked="False" Height="20" Content="Журнал регистрации СИ (Нефть)" />
+                                <CheckBox x:Name="JournalProductIVK1" IsChecked="False" Height="20" Content="Журнал регистрации СИ (Нефтепродукт)" />
+                            </TreeViewItem>
+                            <ToggleSwitch x:Name="useMI3287IVK1" IsChecked="False" Height="50" Content="Использовать Поверку МИ3287"/>
+                            <TreeViewItem Header="Поверка МИ3287" x:Name="MI3287IVK1" IsExpanded="False" IsEnabled="{Binding ElementName=useMI3287IVK1, Path=IsChecked}">
+                                <CheckBox x:Name="MI3287WorkPRIVK1" IsChecked="False" Height="20" Content="Поверка МИ3287 (рабочего ПР)" />
+                                <CheckBox x:Name="MI3287ControlPRIVK1" IsChecked="False" Height="20" Content="Поверка МИ3287 (контрольного ПР)" />
+                            </TreeViewItem>
+                            <ToggleSwitch x:Name="useKMHPPCIIVK1" IsChecked="False" Height="50" Content="Использовать КМХ ПП по лаб. СИ"/>
+                            <TreeViewItem Header="КМХ ПП по лаб. СИ" x:Name="KMHPPCIIVK1" IsExpanded="False" IsEnabled="{Binding ElementName=useKMHPPCIIVK1, Path=IsChecked}">
+                                <CheckBox x:Name="KMHCIIVK1" IsChecked="False" Height="20" Content="КМХ Лаб. СИ" />
+                                <CheckBox x:Name="KMHCITDVIVK1" IsChecked="False" Height="20" Content="КМХ Лаб. СИ (ТДВ)" />
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Подключение" IsExpanded="False">
+                            <CheckBox x:Name="connect1IVK1" IsChecked="False" Height="20" Content="Основной" />
+                            <TextBox x:Name="server1IVK1" Watermark="ip основной" IsEnabled="{Binding ElementName=connect1IVK1, Path=IsChecked}"/>
+                            <CheckBox x:Name="connect2IVK1" IsChecked="False" Margin="0,10,0,0" Height="20" Content="Резервный" />
+                            <TextBox x:Name="server2IVK1" Watermark="ip резервный" IsEnabled="{Binding ElementName=connect2IVK1, Path=IsChecked}"/>
+                        </TreeViewItem>
+                    </TreeViewItem>
+                </TreeView>
+                <ToggleSwitch x:Name="useIVK2" IsChecked="False" Height="50" Content="Использовать ИВК-2"/>
+                <TreeView BorderThickness="1">
+                    <TreeViewItem Header="ИВК-2" x:Name="IVK2" IsExpanded="False" IsEnabled="{Binding ElementName=useIVK2, Path=IsChecked}">
+                        <TreeViewItem Header="Документы" IsExpanded="False">
+                            <TreeViewItem Header="Отчеты" IsExpanded="False">
+                                <CheckBox x:Name="reportIVK2" IsChecked="False" Height="20" Content="Отчеты" />
+                                <CheckBox x:Name="reportUstLugaIVK2" IsChecked="False" Height="20" Content="Отчеты(Усть-Луга)" />
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeViewItem>
+                </TreeView>
+                <ToggleSwitch x:Name="useIVKRsu" IsChecked="False" Height="50" Content="Использовать ИВК-РСУ"/>
+                <TreeView BorderThickness="1">
+                    <TreeViewItem Header="ИВК-РСУ" x:Name="IVKRsu" IsExpanded="False" IsEnabled="{Binding ElementName=useIVKRsu, Path=IsChecked}">
+                        <TreeViewItem Header="Документы" IsExpanded="False">
+                            <TreeViewItem Header="Отчеты" IsExpanded="False">
+                                <CheckBox x:Name="reportIVKRsu" IsChecked="False" Height="20" Content="Отчеты" />
+                                <CheckBox x:Name="reportUstLugaIVKRsu" IsChecked="False" Height="20" Content="Отчеты(Усть-Луга)" />
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeViewItem>
+                </TreeView>
+            </StackPanel>
+            <Button Content="Сохранить" HorizontalAlignment="Right" Click="Button_Save">
+                <Button.Styles>
+                    <Style>
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="ThemeBorderMidBrush">Blue</SolidColorBrush>
+                            <SolidColorBrush x:Key="ThemeControlHighBrush">DarkBlue</SolidColorBrush>
+                            <SolidColorBrush x:Key="ButtonBorderBrush">Blue</SolidColorBrush>
+                            <SolidColorBrush x:Key="ButtonBackground">DarkBlue</SolidColorBrush>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver">Blue</SolidColorBrush>
+                            <SolidColorBrush x:Key="ButtonBackgroundPressed">BlueViolet</SolidColorBrush>
+                        </Style.Resources>
+                    </Style>
+                </Button.Styles>
+            </Button>
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
+       
+    
+
+
